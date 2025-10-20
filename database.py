@@ -10,10 +10,7 @@ except redis.exceptions.ConnectionError as e:
     exit()
 
 def criar_tarefa(titulo, descricao):
-    """
-    Cria uma nova tarefa no Redis.
-    Utiliza um contador atômico para garantir IDs únicos.
-    """
+  
     try:
        
         id_tarefa = r.incr('contador_id_tarefa')
@@ -34,9 +31,7 @@ def criar_tarefa(titulo, descricao):
         return None
 
 def listar_todas_tarefas():
-    """
-    Retorna uma lista de todas as tarefas armazenadas no Redis.
-    """
+   
     try:
         chaves_tarefas = r.keys('tarefa:*')
         tarefas = []
@@ -52,9 +47,7 @@ def listar_todas_tarefas():
         return []
 
 def obter_tarefa(id_tarefa):
-    """
-    Obtém uma única tarefa pelo seu ID.
-    """
+   
     try:
         chave = f'tarefa:{id_tarefa}'
         tarefa = r.hgetall(chave)
@@ -66,10 +59,7 @@ def obter_tarefa(id_tarefa):
         return None
 
 def atualizar_tarefa(id_tarefa, dados_atualizacao):
-    """
-    Atualiza um ou mais campos de uma tarefa existente.
-    'dados_atualizacao' deve ser um dicionário.
-    """
+  
     try:
         chave = f'tarefa:{id_tarefa}'
         if r.exists(chave):
@@ -81,9 +71,7 @@ def atualizar_tarefa(id_tarefa, dados_atualizacao):
         return False
 
 def deletar_tarefa(id_tarefa):
-    """
-    Exclui uma tarefa do Redis pelo seu ID.
-    """
+   
     try:
         chave = f'tarefa:{id_tarefa}'
         if r.exists(chave):
