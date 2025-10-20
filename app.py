@@ -64,7 +64,7 @@ def deletar(id_tarefa):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    # 'debug=True' permite que o servidor Flask reinicie automaticamente
-    # após alterações no código, facilitando o desenvolvimento.
-    # Em um ambiente de produção, isso deve ser 'False'.
-    app.run(debug=True)
+    # --- ALTERAÇÃO IMPORTANTE PARA CODESPACES ---
+    # Precisamos usar host='0.0.0.0' para que o servidor seja acessível
+    # fora do contêiner do Codespaces. A porta 5000 é a padrão do Flask.
+    app.run(host='0.0.0.0', port=5000, debug=True)
