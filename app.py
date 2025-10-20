@@ -5,18 +5,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    """
-    Rota principal. Lista todas as tarefas.
-    """
     tarefas = db.listar_todas_tarefas()
     return render_template('index.html', tarefas=tarefas)
 
 @app.route('/adicionar', methods=['POST'])
 def adicionar():
-    """
-    Rota para adicionar uma nova tarefa.
-    Processa os dados do formulário da página inicial.
-    """
     if request.method == 'POST':
         titulo = request.form['titulo']
         descricao = request.form['descricao']
@@ -28,11 +21,6 @@ def adicionar():
 
 @app.route('/editar/<id_tarefa>', methods=['GET', 'POST'])
 def editar(id_tarefa):
-    """
-    Rota para editar uma tarefa.
-    GET: Mostra o formulário de edição com os dados da tarefa.
-    POST: Atualiza os dados da tarefa no banco.
-    """
     if request.method == 'POST':
         titulo = request.form['titulo']
         descricao = request.form['descricao']
@@ -57,9 +45,6 @@ def editar(id_tarefa):
 
 @app.route('/deletar/<id_tarefa>', methods=['POST'])
 def deletar(id_tarefa):
-    """
-    Rota para deletar uma tarefa.
-    """
     db.deletar_tarefa(id_tarefa)
     return redirect(url_for('index'))
 
