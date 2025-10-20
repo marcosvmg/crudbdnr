@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="form-section">
+        <h2>Editar Tarefa (ID: {{ tarefa.id }})</h2>
+        <form action="{{ url_for('editar', id_tarefa=tarefa.id) }}" method="post">
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" value="{{ tarefa.titulo }}" required>
+            </div>
+            <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" rows="3" required>{{ tarefa.descricao }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="Pendente" {% if tarefa.status == 'Pendente' %}selected{% endif %}>Pendente</option>
+                    <option value="Em Progresso" {% if tarefa.status == 'Em Progresso' %}selected{% endif %}>Em Progresso</option>
+                    <option value="Concluída" {% if tarefa.status == 'Concluída' %}selected{% endif %}>Concluída</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                <a href="{{ url_for('index') }}" class="btn btn-cancel">Cancelar</a>
+            </div>
+        </form>
+    </section>
+{% endblock %}
