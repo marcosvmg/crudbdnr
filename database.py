@@ -1,9 +1,7 @@
 import redis
 from datetime import datetime
 
-# Conecta-se ao Redis. O 'decode_responses=True' é crucial para que
-# as respostas do Redis venham como strings e não como bytes.
-try:
+
     r = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
     r.ping()
     print("Conexão com o Redis estabelecida com sucesso.")
@@ -17,7 +15,7 @@ def criar_tarefa(titulo, descricao):
     Utiliza um contador atômico para garantir IDs únicos.
     """
     try:
-        # Gera um novo ID único para a tarefa usando um contador no Redis
+       
         id_tarefa = r.incr('contador_id_tarefa')
         chave = f'tarefa:{id_tarefa}'
         
@@ -28,7 +26,7 @@ def criar_tarefa(titulo, descricao):
             'status': 'Pendente'
         }
         
-        # Armazena a tarefa como um hash no Redis
+       
         r.hset(chave, mapping=tarefa)
         return id_tarefa
     except Exception as e:
@@ -47,7 +45,7 @@ def listar_todas_tarefas():
             tarefa = r.hgetall(chave)
             tarefa['id'] = id_tarefa
             tarefas.append(tarefa)
-        # Ordena as tarefas pelo ID de forma decrescente para mostrar as mais novas primeiro
+        
         return sorted(tarefas, key=lambda x: int(x['id']), reverse=True)
     except Exception as e:
         print(f"Erro ao listar tarefas: {e}")

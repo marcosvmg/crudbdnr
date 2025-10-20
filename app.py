@@ -47,12 +47,12 @@ def editar(id_tarefa):
         db.atualizar_tarefa(id_tarefa, dados_atualizacao)
         return redirect(url_for('index'))
 
-    # Se o método for GET, busca a tarefa e exibe o formulário de edição
+    
     tarefa = db.obter_tarefa(id_tarefa)
     if tarefa:
         return render_template('editar.html', tarefa=tarefa)
     else:
-        # Caso a tarefa não seja encontrada, redireciona para a página inicial
+        
         return redirect(url_for('index'))
 
 @app.route('/deletar/<id_tarefa>', methods=['POST'])
@@ -64,7 +64,5 @@ def deletar(id_tarefa):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    # --- ALTERAÇÃO IMPORTANTE PARA CODESPACES ---
-    # Precisamos usar host='0.0.0.0' para que o servidor seja acessível
-    # fora do contêiner do Codespaces. A porta 5000 é a padrão do Flask.
+    
     app.run(host='0.0.0.0', port=5000, debug=True)
