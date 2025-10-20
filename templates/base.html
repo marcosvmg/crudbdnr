@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF--8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciador de Tarefas</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
-    <header>
-        <h1>Gerenciador de Tarefas com Flask e Redis</h1>
+    <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-gray-800 text-white shadow-md">
+        <div class="container mx-auto max-w-4xl p-6">
+            <h1 class="text-3xl font-bold">CRUD DSM3</h1>
+        </div>
     </header>
-    <main class="container">
+
+    <main class="container mx-auto max-w-4xl p-6">
         {% block content %}
         {% endblock %}
     </main>
-    <footer>
+
+    <footer class="text-center p-6 mt-10 text-gray-600 text-sm">
         <p>&copy; 2025 - Sistema CRUD Completo</p>
     </footer>
+
 </body>
 </html>

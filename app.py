@@ -64,7 +64,5 @@ def deletar(id_tarefa):
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    # --- ALTERAÇÃO IMPORTANTE PARA CODESPACES ---
-    # Precisamos usar host='0.0.0.0' para que o servidor seja acessível
-    # fora do contêiner do Codespaces. A porta 5000 é a padrão do Flask.
+    # Mantém a configuração para o Codespaces
     app.run(host='0.0.0.0', port=5000, debug=True)
